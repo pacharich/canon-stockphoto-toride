@@ -20,12 +20,27 @@ const FEMALES = [
     location: PLACEHOLDER, extra: [], videos: [],
     cardNote: 'プロフィール・写真 追加予定',
   },
-  // 2. ミオ
+  // 2. ミオ（既存資料のミオを流用）
   {
-    id: 'mio', name: 'ミオ', age: PLACEHOLDER,
-    height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
-    location: PLACEHOLDER, extra: [], videos: [],
-    cardNote: 'プロフィール・写真 追加予定',
+    id: 'mio', name: 'ミオ', age: 33,
+    height: 153, size: 'B 82cm / W 55cm / H 86cm',
+    shoe: '22.5cm', exp: NA, location: '東京都（石川県出身）',
+    extra: [['体重', '47kg']],
+    videos: ['https://youtube.com/shorts/A7apU18DWgU', 'https://youtu.be/SeRlnOSx54k'],
+    achievementTitle: '出演経歴・実績',
+    achievementSections: [
+      { title: '出演経歴', items: [
+        "MicheBloomin' PR", '9unq（クアンク）PR', 'PLACOLE & DRESSY',
+        'Regression クレイマスク', 'Eclat Charme', '東京ミッドタウン八重洲',
+        '東京プリンスホテル', 'Afternoon Tea' ] },
+      { title: '雑誌掲載', items: ['美人百花', 'non-no', 'anan'] },
+      { title: '舞台', items: ['ガンバの冒険', '翼を下さい', 'アラビアンナイト'] },
+      { title: '映画', items: [
+        'ネバーダンス（佐藤克則 監督）', '夢の中へ（宮崎彩代 監督／女優賞）',
+        'お姫様になりたくて（川地廣和 監督）', '恋に至る病（木村承子 監督）' ] },
+      { title: 'ドラマ', items: ['世にも奇妙な物語（生徒役）'] },
+      { title: '企業PV', items: ['Panasonic', 'KDDI'] }
+    ]
   },
   // 3. アイ（既存資料のアイを流用）（1999/05/18生）※出演実績は本人希望により 9/4 に全面差し替え。
   {
