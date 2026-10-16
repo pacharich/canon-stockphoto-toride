@@ -102,7 +102,7 @@ const FEMALES = [
   },
 ];
 
-// 男性3名（1. タツヤ／2・3 は詳細待ち）
+// 男性3名（1. タツヤ／2. こうすけ／3 は詳細待ち）
 const MALE_PLACEHOLDER = n => ({
   id: 'male' + n, name: '男性モデル ' + n, age: PLACEHOLDER,
   height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
@@ -128,7 +128,48 @@ const MALES = [
         'Roys「VENOM」', '宮田みほ「君と夏のせい。」' ] }
     ]
   },
-  MALE_PLACEHOLDER(2),
+  // 2. こうすけ
+  {
+    id: 'kosuke', name: 'こうすけ', age: 28,
+    height: 175, clothesSize: 'Lサイズ', size: 'B 81cm / W 69cm / H 90cm',
+    shoe: '25.5cm', exp: NA, location: '東京都（福岡県出身）', station: '高幡不動駅（京王線）',
+    extra: [],
+    videos: [],
+    achievementTitle: '出演実績',
+    achievementSections: [
+      { title: '出演実績', items: [
+        'CITIZEN LP',
+        'ミッドタウン八重洲 サイネージ映像',
+        'JAバンク静岡 TVCM',
+        '静岡トヨタ TVCM',
+        'ユニフォームタウン カタログ',
+        'TAKA-Q',
+        '成田空港サイネージ映像 警備員役',
+        'NEC LP',
+        'レック 激落ちくん',
+        '三菱自動車グローバル 海外TVCM',
+        '東急ハンズ メール会員サイト',
+        'KDDI povo2.0 インタビュー映像',
+        'オークウッドホテル麻布',
+        '三日月ホテル鬼怒川温泉',
+        'PCA hub TVCM',
+        '長野県チノ旅映像',
+        '伊豆縦貫自動車道 PR映像',
+        '株式会社公益社 Web',
+        'VFX factory PR映像',
+        '株式会社共進 TVCM',
+        'acoustic world',
+        'マイナビニュース 記事',
+        'アスキー 記事',
+        '朝日新聞デジタル 記事',
+        'palmwork',
+        'RASIK',
+        'ROYAL CANIN',
+        'ONE AND UNIQUE',
+        'Printstar',
+        'グランスノー奥伊吹' ] }
+    ]
+  },
   MALE_PLACEHOLDER(3),
 ];
 
