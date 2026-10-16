@@ -16,17 +16,19 @@ const FEMALES = [
   // 1. リナ
   {
     id: 'rina', name: 'リナ', age: PLACEHOLDER,
+    clothesSize: 'S or Mサイズ', station: '青井駅',
     height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
-    location: PLACEHOLDER, extra: [], videos: [],
+    location: PLACEHOLDER, extra: [], videos: ['https://youtu.be/CzzzQ_VzfHs', 'https://youtu.be/t_pOcQUdZRg'],
     cardNote: 'プロフィール・写真 追加予定',
   },
   // 2. ミオ（既存資料のミオを流用）
   {
     id: 'mio', name: 'ミオ', age: 33,
+    clothesSize: 'XS or Sサイズ', station: '武蔵小杉駅',
     height: 153, size: 'B 82cm / W 55cm / H 86cm',
     shoe: '22.5cm', exp: NA, location: '東京都（石川県出身）',
     extra: [['体重', '47kg']],
-    videos: ['https://youtube.com/shorts/A7apU18DWgU', 'https://youtu.be/SeRlnOSx54k'],
+    videos: ['https://youtu.be/0al9w8zdlHs', 'https://youtu.be/SeRlnOSx54k'],
     achievementTitle: '出演経歴・実績',
     achievementSections: [
       { title: '出演経歴', items: [
@@ -45,6 +47,7 @@ const FEMALES = [
   // 3. アイ（既存資料のアイを流用）（1999/05/18生）※出演実績は本人希望により 9/4 に全面差し替え。
   {
     id: 'ai', name: 'アイ', age: 27,
+    clothesSize: 'Mサイズ', station: '巣鴨駅',
     height: 162, size: 'B 84cm / W 59cm / H 85cm',
     shoe: '24.0cm', exp: NA, location: '東京都',
     extra: [],
@@ -68,8 +71,9 @@ const FEMALES = [
   // 4. ミキ（既存資料と同一人物）（1994/05/28生）
   {
     id: 'miki', name: 'ミキ', age: 32,
+    clothesSize: 'Mサイズ', station: '平和島駅',
     height: 160, size: 'B 85cm / W 61cm / H 86cm',
-    shoe: '23.0cm', clothesSize: 'Mサイズ', exp: NA, location: '東京都',
+    shoe: '23.0cm', exp: NA, location: '東京都',
     extra: [['体重', '42kg']],
     videos: ['https://youtube.com/shorts/kXTf0U_0560'],
     achievementTitle: '出演実績',
@@ -257,6 +261,8 @@ function renderLightbox() {
   if (m.hairColor) { specHair.style.display = ''; $('#lbHair').textContent = m.hairColor; } else { specHair.style.display = 'none'; }
   if (m.eyeColor)  { specEye.style.display = '';  $('#lbEye').textContent = m.eyeColor; }  else { specEye.style.display = 'none'; }
   if (m.clothesSize) { specClothes.style.display = ''; $('#lbClothes').textContent = m.clothesSize; } else { specClothes.style.display = 'none'; }
+  const specStation = $('#specStation');
+  if (m.station) { specStation.style.display = ''; $('#lbStation').textContent = m.station; } else { specStation.style.display = 'none'; }
 
   // 追加プロフィール項目（体重・運転免許・利き手・ピアス等）
   document.querySelectorAll('.spec.extra-spec').forEach(e => e.remove());
