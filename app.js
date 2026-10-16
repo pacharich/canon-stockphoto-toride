@@ -378,52 +378,8 @@ const FEMALES = [
   }
 ];
 
-// 男性3名（マサキ／タツヤ／コウスケ）
+// 男性3名（タツヤ／コウスケ／マサキ）
 const MALES = [
-  {
-    "id": "masaki",
-    "name": "マサキ",
-    "age": 27,
-    "height": 175,
-    "clothesSize": "Lサイズ",
-    "size": "B 96cm / W 75cm / H 90cm",
-    "shoe": "26.5〜27.0cm",
-    "exp": "—",
-    "location": "千葉県松戸市（愛媛県出身）",
-    "station": "馬橋駅",
-    "extra": [
-      [
-        "体重",
-        "62kg"
-      ]
-    ],
-    "videos": [
-      "https://www.instagram.com/reel/DXgjRtqlNEE/"
-    ],
-    "achievementTitle": "出演実績",
-    "achievementSections": [
-      {
-        "title": "製造・作業服関連",
-        "items": [
-          "ワークマン（商品パッケージ、広告媒体）",
-          "LEXUS（アプリケーションOPムービー）",
-          "TOYOTA（アプリケーションOPムービー）",
-          "Panasonic（広告媒体、産経新聞）"
-        ]
-      },
-      {
-        "title": "その他",
-        "items": [
-          "アツギ（ECサイトモデル）",
-          "ミズノ（商品使用イメージ映像）",
-          "TATRAS（広告媒体、採用ページ）",
-          "銀のさら（アクスタモデル）",
-          "株式会社船橋屋（採用ページ）",
-          "ブライダルモデル多数"
-        ]
-      }
-    ]
-  },
   {
     "id": "tatsuya",
     "name": "タツヤ",
@@ -539,6 +495,50 @@ const MALES = [
           "ONE AND UNIQUE",
           "Printstar",
           "グランスノー奥伊吹"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "masaki",
+    "name": "マサキ",
+    "age": 27,
+    "height": 175,
+    "clothesSize": "Lサイズ",
+    "size": "B 96cm / W 75cm / H 90cm",
+    "shoe": "26.5〜27.0cm",
+    "exp": "—",
+    "location": "千葉県松戸市（愛媛県出身）",
+    "station": "馬橋駅",
+    "extra": [
+      [
+        "体重",
+        "62kg"
+      ]
+    ],
+    "videos": [
+      "https://www.instagram.com/reel/DXgjRtqlNEE/"
+    ],
+    "achievementTitle": "出演実績",
+    "achievementSections": [
+      {
+        "title": "製造・作業服関連",
+        "items": [
+          "ワークマン（商品パッケージ、広告媒体）",
+          "LEXUS（アプリケーションOPムービー）",
+          "TOYOTA（アプリケーションOPムービー）",
+          "Panasonic（広告媒体、産経新聞）"
+        ]
+      },
+      {
+        "title": "その他",
+        "items": [
+          "アツギ（ECサイトモデル）",
+          "ミズノ（商品使用イメージ映像）",
+          "TATRAS（広告媒体、採用ページ）",
+          "銀のさら（アクスタモデル）",
+          "株式会社船橋屋（採用ページ）",
+          "ブライダルモデル多数"
         ]
       }
     ]
