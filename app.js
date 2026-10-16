@@ -785,20 +785,41 @@ function renderLightbox() {
     btns.parentNode.insertBefore(box, btns);
   }
 
-  $('#lbPrev').disabled = lbIdx === 0;
-  $('#lbNext').disabled = lbIdx === lbList.length - 1;
+  // 全モデル（女性→男性）の最初と最後ではボタン自体を表示しない
+  $('#lbPrev').style.visibility = hasModel(-1) ? '' : 'hidden';
+  $('#lbNext').style.visibility = hasModel(1) ? '' : 'hidden';
 }
 
-$('#lbPrev').addEventListener('click', () => { if (lbIdx > 0) { lbIdx--; lbShot = 0; renderLightbox(); } });
-$('#lbNext').addEventListener('click', () => { if (lbIdx < lbList.length - 1) { lbIdx++; lbShot = 0; renderLightbox(); } });
+// モデル移動：女性の最後→男性の最初、男性の最初→女性の最後へそのまま移動
+function stepModel(delta) {
+  let idx = lbIdx + delta;
+  if (idx < 0) {
+    if (currentTab !== 'male' || !FEMALES.length) return null;
+    return { tab: 'female', list: FEMALES, idx: FEMALES.length - 1 };
+  }
+  if (idx >= lbList.length) {
+    if (currentTab !== 'female' || !MALES.length) return null;
+    return { tab: 'male', list: MALES, idx: 0 };
+  }
+  return { tab: currentTab, list: lbList, idx };
+}
+function hasModel(delta) { return !!stepModel(delta); }
+function moveModel(delta) {
+  const s = stepModel(delta);
+  if (!s) return;
+  currentTab = s.tab; lbList = s.list; lbIdx = s.idx; lbShot = 0;
+  renderLightbox();
+}
+$('#lbPrev').addEventListener('click', () => moveModel(-1));
+$('#lbNext').addEventListener('click', () => moveModel(1));
 $('#lbClose').addEventListener('click', closeLightbox);
 lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
 
 document.addEventListener('keydown', e => {
   if (!lb.classList.contains('open')) return;
   if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowLeft'  && !$('#lbPrev').disabled) { lbIdx--; lbShot = 0; renderLightbox(); }
-  if (e.key === 'ArrowRight' && !$('#lbNext').disabled) { lbIdx++; lbShot = 0; renderLightbox(); }
+  if (e.key === 'ArrowLeft')  moveModel(-1);
+  if (e.key === 'ArrowRight') moveModel(1);
   if (e.key === 'ArrowUp')   { e.preventDefault(); if (lbShot > 0) { lbShot--; renderLightbox(); } }
   if (e.key === 'ArrowDown') { e.preventDefault(); const ph = getPhotos(lbList[lbIdx]); if (lbShot < ph.length - 1) { lbShot++; renderLightbox(); } }
 });
