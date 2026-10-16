@@ -134,7 +134,7 @@ const MALES = [
     height: 175, clothesSize: 'Lサイズ', size: 'B 81cm / W 69cm / H 90cm',
     shoe: '25.5cm', exp: NA, location: '東京都（福岡県出身）', station: '高幡不動駅（京王線）',
     extra: [],
-    videos: [],
+    videos: ['https://youtu.be/pfO-BTJdoAI', 'https://youtu.be/v9ykJvvQI_k'],
     achievementTitle: '出演実績',
     achievementSections: [
       { title: '出演実績', items: [
