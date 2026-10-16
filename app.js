@@ -57,7 +57,7 @@ const FEMALES = [
           "農林水産省 米粉パンを食べよう",
           "日本乳癌検診学会 全国乳がん検診",
           "東武鉄道株式会社 東武バス",
-          "株式会社オリエンタルランド 東京ディズニーシー ソアリン",
+          "株式会社オリエンタルランド 東京ディズニーシー ソワリン",
           "株式会社近鉄ユニバーサルシティ",
           "株式会社メガトップ 眼鏡市場",
           "カネボウ株式会社 トワニー",
@@ -545,6 +545,30 @@ const MALES = [
   }
 ];
 
+
+// ============ プロフィール項目 ============
+function known(v) { return v !== undefined && v !== null && v !== '' && v !== PLACEHOLDER && v !== NA; }
+function extraVal(m, label) { const e = (m.extra || []).find(([l]) => l === label); return e ? e[1] : undefined; }
+function specFields(m) {
+  const base = [
+    { l: '身長',       v: typeof m.height === 'number' ? m.height + 'cm' : m.height },
+    { l: '服のサイズ', v: m.clothesSize },
+    { l: '年齢',       v: typeof m.age === 'number' ? m.age + '歳' : m.age },
+    { l: 'サイズ',     v: m.size },
+    { l: 'シューズ',   v: m.shoe },
+    { l: '在住地',     v: m.location },
+    { l: '最寄り駅',   v: m.station },
+    { l: '体重',       v: extraVal(m, '体重') },
+    { l: '芸歴',       v: typeof m.exp === 'number' ? m.exp + '年' : m.exp },
+    { l: 'ヘアカラー', v: m.hairColor },
+    { l: '瞳カラー',   v: m.eyeColor },
+  ];
+  const extras = (m.extra || []).filter(([l]) => l !== '体重').map(([l, v]) => ({ l, v }));
+  return [...base, ...extras];
+}
+const COMMON_SPECS = specFields({}).map(f => f.l)
+  .filter(l => [...FEMALES, ...MALES].every(m => known((specFields(m).find(f => f.l === l) || {}).v)));
+
 // 番号ラベルの接頭辞（旧テンプレートの「新婦役／新郎役」に代わる中立表記）
 const NUM_PREFIX = 'MODEL ';
 
@@ -595,9 +619,9 @@ function buildCard(m, i, gender) {
     <div class="card-body">
       <div class="card-name">
         <span class="nm">${m.name}</span>
-        <span class="age">${ageDisp(m.age)}</span>
+        ${known(m.age) ? `<span class="age">${ageDisp(m.age)}</span>` : ''}
       </div>
-      <div class="card-loc">${m.location}</div>
+      ${known(m.location) ? `<div class="card-loc">${m.location}</div>` : ''}
       <div class="card-stat">
         <span><span class="l">身長</span>${heightDisp(m.height)}</span>
       </div>
@@ -676,36 +700,17 @@ function renderLightbox() {
 
   $('#lbName').innerHTML = typeof m.age === 'number'
     ? `${m.name} <span class="age">${m.age}歳</span>` : `${m.name}`;
-  $('#lbLoc').textContent = m.location;
-  $('#lbHeight').textContent = m.height;
-  $('#lbHeightUnit').style.display = typeof m.height === 'number' ? '' : 'none';
-  $('#lbAge').textContent = m.age;
-  $('#lbAgeUnit').textContent = typeof m.age === 'number' ? '歳' : '';
-  $('#lbSize').textContent = m.size;
-  $('#lbLocSpec').textContent = m.location;
+  $('#lbLoc').textContent = known(m.location) ? m.location : '';
 
-  const specShoe = $('#specShoe');
-  if (m.shoe) { specShoe.style.display = ''; $('#lbShoe').textContent = m.shoe; }
-  else { specShoe.style.display = 'none'; }
-
-  // 芸歴は数値（年）がある場合のみ表示
-  if (typeof m.exp === 'number') { $('#specExp').style.display = ''; $('#lbExp').textContent = expDisp(m.exp); }
-  else { $('#specExp').style.display = 'none'; }
-
-  const specHair = $('#specHair'), specEye = $('#specEye'), specClothes = $('#specClothes');
-  if (m.hairColor) { specHair.style.display = ''; $('#lbHair').textContent = m.hairColor; } else { specHair.style.display = 'none'; }
-  if (m.eyeColor)  { specEye.style.display = '';  $('#lbEye').textContent = m.eyeColor; }  else { specEye.style.display = 'none'; }
-  if (m.clothesSize) { specClothes.style.display = ''; $('#lbClothes').textContent = m.clothesSize; } else { specClothes.style.display = 'none'; }
-  const specStation = $('#specStation');
-  if (m.station) { specStation.style.display = ''; $('#lbStation').textContent = m.station; } else { specStation.style.display = 'none'; }
-
-  // 追加プロフィール項目（体重・運転免許・利き手・ピアス等）
-  document.querySelectorAll('.spec.extra-spec').forEach(e => e.remove());
+  // プロフィール項目：全員わかっている項目を上に同じ順で、個別にわかっている項目をその下に並べる（不明な項目は表示しない）
   const specsBox = document.querySelector('.specs');
-  (m.extra || []).forEach(([label, val]) => {
+  specsBox.innerHTML = '';
+  const fields = specFields(m).filter(f => known(f.v));
+  const rows = [...COMMON_SPECS.map(l => fields.find(f => f.l === l)), ...fields.filter(f => !COMMON_SPECS.includes(f.l))];
+  rows.forEach(f => {
     const d = document.createElement('div');
-    d.className = 'spec extra-spec';
-    d.innerHTML = `<div class="spec-l">${label}</div><div class="spec-v">${val}</div>`;
+    d.className = 'spec';
+    d.innerHTML = `<div class="spec-l">${f.l}</div><div class="spec-v">${f.v}</div>`;
     specsBox.appendChild(d);
   });
 
