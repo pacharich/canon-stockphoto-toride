@@ -102,7 +102,7 @@ const FEMALES = [
   },
 ];
 
-// 男性3名（1. タツヤ／2. こうすけ／3 は詳細待ち）
+// 男性3名（1. タツヤ／2. こうすけ／3. マサキ）
 const MALE_PLACEHOLDER = n => ({
   id: 'male' + n, name: '男性モデル ' + n, age: PLACEHOLDER,
   height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
@@ -170,7 +170,22 @@ const MALES = [
         'グランスノー奥伊吹' ] }
     ]
   },
-  MALE_PLACEHOLDER(3),
+  // 3. マサキ
+  {
+    id: 'masaki', name: 'マサキ', age: 27,
+    height: 175, clothesSize: 'Lサイズ', size: 'B 96cm / W 75cm / H 90cm',
+    shoe: '26.5〜27.0cm', exp: NA, location: '千葉県松戸市（愛媛県出身）', station: '馬橋駅',
+    extra: [['体重', '62kg']],
+    videos: ['https://www.instagram.com/reel/DXgjRtqlNEE/'],
+    achievementTitle: '出演実績',
+    achievementSections: [
+      { title: '出演実績', items: [
+        'LEXUS（アプリケーションOPムービー）', 'TOYOTA（アプリケーションOPムービー）',
+        'Panasonic（広告媒体、産経新聞）', 'ワークマン（商品パッケージ、広告媒体）', 'アツギ（ECサイトモデル）',
+        'ミズノ（商品使用イメージ映像）', 'TATRAS（広告媒体、採用ページ）', '銀のさら（アクスタモデル）',
+        '株式会社船橋屋（採用ページ）', 'ブライダルモデル多数' ] }
+    ]
+  },
 ];
 
 // 番号ラベルの接頭辞（旧テンプレートの「新婦役／新郎役」に代わる中立表記）
@@ -347,6 +362,13 @@ function renderLightbox() {
       '<div style="font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--accent);margin-bottom:12px;text-transform:uppercase;font-weight:600;">MOVIE ／ イメージ動画</div>' +
       '<div style="display:flex;flex-wrap:wrap;gap:12px;">' +
       m.videos.map(u => {
+        const ig = String(u).match(/instagram\.com\/(?:reel|p)\/([A-Za-z0-9_-]+)/);
+        if (ig) {
+          return `<div style="position:relative;width:240px;max-width:100%;height:430px;border-radius:8px;overflow:hidden;background:#fff;">
+          <iframe src="https://www.instagram.com/reel/${ig[1]}/embed" title="イメージ動画" loading="lazy" scrolling="no"
+            allowtransparency="true" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;"></iframe>
+        </div>`;
+        }
         const id = ytId(u);
         return `<div style="position:relative;width:200px;max-width:100%;aspect-ratio:9/16;border-radius:8px;overflow:hidden;background:#000;">
           <iframe src="https://www.youtube.com/embed/${id}" title="イメージ動画" loading="lazy"
