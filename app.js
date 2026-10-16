@@ -102,13 +102,35 @@ const FEMALES = [
   },
 ];
 
-// 男性3名：詳細待ち。枠のみ確保。
-const MALES = [1, 2, 3].map(n => ({
+// 男性3名（1. タツヤ／2・3 は詳細待ち）
+const MALE_PLACEHOLDER = n => ({
   id: 'male' + n, name: '男性モデル ' + n, age: PLACEHOLDER,
   height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
   location: PLACEHOLDER, extra: [], videos: [],
   cardNote: 'プロフィール・写真 追加予定',
-}));
+});
+const MALES = [
+  // 1. タツヤ
+  {
+    id: 'tatsuya', name: 'タツヤ', age: PLACEHOLDER,
+    height: 183, clothesSize: 'XLサイズ', size: 'B 100cm / W 81cm / H 100cm',
+    shoe: '27.5cm', exp: NA, location: PLACEHOLDER,
+    extra: [['体重', '79kg']],
+    videos: ['https://youtu.be/Z91g3RjfF9M', 'https://youtu.be/f2h_1QVTDC0'],
+    achievementTitle: '出演実績',
+    achievementSections: [
+      { title: 'スチール', items: [
+        '越谷レイクタウンmori', '富士電機', 'あきんどスシロー', '丸亀製麺', '東京ドームシティ',
+        'あべのハルカス', 'Jackery', 'TOYO SAFETY' ] },
+      { title: '映像', items: [
+        '公益財団法人日本賃貸住宅管理協会', '桐生信用金庫', 'FWD生命', '東京ドームホテル', '安楽亭' ] },
+      { title: 'MV', items: [
+        'Roys「VENOM」', '宮田みほ「君と夏のせい。」' ] }
+    ]
+  },
+  MALE_PLACEHOLDER(2),
+  MALE_PLACEHOLDER(3),
+];
 
 // 番号ラベルの接頭辞（旧テンプレートの「新婦役／新郎役」に代わる中立表記）
 const NUM_PREFIX = 'MODEL ';
