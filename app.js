@@ -27,12 +27,28 @@ const FEMALES = [
     location: PLACEHOLDER, extra: [], videos: [],
     cardNote: 'プロフィール・写真 追加予定',
   },
-  // 3. アイ（既存資料のアイと同一人物か確認中）
+  // 3. アイ（既存資料のアイを流用）（1999/05/18生）※出演実績は本人希望により 9/4 に全面差し替え。
   {
-    id: 'ai', name: 'アイ', age: PLACEHOLDER,
-    height: PLACEHOLDER, size: PLACEHOLDER, shoe: null, exp: NA,
-    location: PLACEHOLDER, extra: [], videos: [],
-    cardNote: 'プロフィール・写真 追加予定',
+    id: 'ai', name: 'アイ', age: 27,
+    height: 162, size: 'B 84cm / W 59cm / H 85cm',
+    shoe: '24.0cm', exp: NA, location: '東京都',
+    extra: [],
+    videos: ['https://youtu.be/VKIoEIuxl8g'],
+    achievementTitle: '出演実績 ／ BEAUTY・ADVERTISING・WEB MOVIE',
+    achievementSections: [
+      { title: 'CM・広告', items: [
+        '三菱倉庫（CM）', 'Aカード（CM）', 'KDDI PONTAパス（WEB広告）',
+        'パナソニックホームズ（PR映像）', 'BASE BREAD（広告）', 'JT（WEB）' ] },
+      { title: 'BEAUTY / MEDICAL', items: [
+        'TCB東京中央美容外科（WEB広告）', 'AGAスキンクリニックレディース（WEB広告）',
+        'MEDULLA ソニックシャンプー（広告）', 'VIAGE（広告）', 'UNDEUX SUPERBODY（広告）' ] },
+      { title: 'WEB / PROMOTION', items: [
+        '日野自動車 デュトロ（商品紹介動画）', 'DAIKEN（SNS動画）', 'バイク王（LP広告）' ] },
+      { title: 'STILL / POSTER', items: [
+        '明治（ポスター）', 'ユニ・チャーム（シルコット）', 'ATELIER ÉCRAT' ] },
+      { title: 'CORPORATE / VP', items: [
+        '医療・美容・住宅・ライフスタイル領域など多数出演' ] }
+    ]
   },
   // 4. ミキ（既存資料と同一人物）（1994/05/28生）
   {
